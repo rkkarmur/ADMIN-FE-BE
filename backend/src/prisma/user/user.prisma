@@ -1,0 +1,59 @@
+type UserLocation {
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    address Json?
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    city    Json?
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    lat     Json?
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    long    Json?
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    state   Json?
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    zip     Json?
+}
+
+type UserNotification_ {
+    email Int
+    web   Int
+}
+
+model User {
+    id                    String            @id @default(auto()) @map("_id") @db.ObjectId
+    v                     Int               @map("__v")
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    account_type          Json?
+    billing_rate_number   Int
+    business              String            @db.ObjectId
+    created_at            DateTime          @db.Date
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    deleted_at            Json?
+    email                 String
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    emergency_contact     Json?
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    fcm                   Json?
+    first_name            String
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    forgot_password_token Json?
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    gender                Json?
+    is_active             Int
+    is_custom             Boolean
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    last_login            Json?
+    last_name             String
+    location              UserLocation
+    notification          UserNotification_
+    password              String
+    profile_completed     Int
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    profile_pic           Json?
+
+    role       String   @db.ObjectId
+    /// Could not determine type: the field only had null or empty values in the sample set.
+    token      Json?
+    updated_at DateTime @db.Date
+
+    @@index([first_name, last_name, email, role, is_active], map: "first_name_1_last_name_1_email_1_role_1_is_active_1")
+}
