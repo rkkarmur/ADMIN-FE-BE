@@ -1,54 +1,56 @@
-# React + TypeScript + Vite
+# Rental Admin Panel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive admin panel built with **React 19**, **TypeScript** and **Vite**. The project demonstrates a minimal setup with session based authentication, reusable UI components and a responsive sidebar.
 
-Currently, two official plugins are available:
+## Folder Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+public/             Static assets and fonts
+src/
+  assets/           Application images and other assets
+  components/       Reusable React components (sidebar, profile widgets, UI library)
+  config/           App constants, routes and API endpoints
+  layouts/          Shared page layouts
+  pages/            Application pages and route entry points
+  redux/            Thunks that communicate with the API
+  services/         API abstraction layer
+  store/            Redux store and reducers
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Install dependencies
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+   ```bash
+   npm install
+   ```
+
+2. Copy `.env.example` to `.env` and adjust `VITE_API_URL` for your backend.
+
+## Available Scripts
+
+- **`npm run dev`** – start the development server
+- **`npm run build`** – type check and create a production build in `dist/`
+- **`npm run lint`** – run ESLint over the project
+
+Open `http://localhost:5173` after running `npm run dev` (port may vary).
+
+## Sidebar & Mobile Support
+
+The sidebar collapses into a drawer on small screens. Use the hamburger button at the top of each page to toggle it. This behaviour is implemented in `Sidebar` and `DashboardLayout` components.
+
+## Reusable UI Components
+
+All buttons and loaders are provided in `src/components/ui`. Use `SubmitButton`, `CancelButton` or the generic `Button` component for all interactive elements to keep styling consistent.
+
+## Project Purpose
+
+This repository acts as a lightweight template for building admin panels. It includes:
+
+- Session based authentication with login/logout flows
+- Protected routes via a `PrivateRoute` wrapper
+- Basic profile management pages
+- Toast notifications and loading indicators
+
+Feel free to extend the pages and API calls for your own needs.
+
