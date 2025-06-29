@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  first_name        String
+  last_name         String
+  email             String
+  password          String
+  refresh_token     String[]
+  access_token      String[]
+  forgot_pass_token String[]
+  last_login        DateTime?
+  business          String
+  role              Role      @relation(fields: [role_id], references: [id])
+  role_id           String    @db.ObjectId
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+  deleted_at        DateTime?
+  is_active         Int       @default(1)
+
+  @@unique([email, business])
+}
+
+model Role {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  slug_id    String // You are using this instead of slug
+  permission Json
+  business   String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+  is_active  Int       @default(1)
+
+  users User[]
+
+  @@unique([slug_id, business])
+}

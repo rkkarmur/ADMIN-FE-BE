@@ -20,6 +20,16 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@pages/*": ["pages/*"],
+      "@layouts/*": ["layouts/*"],
+      "@components/*": ["components/*"],
+      "@store/*": ["store/*"],
+      "@store": ["store/index.ts"],
+      "@config/*": ["config/*"],
+      "@services/*": ["services/*"]
+    },
     "types": [
       "node",
       "vite/client"

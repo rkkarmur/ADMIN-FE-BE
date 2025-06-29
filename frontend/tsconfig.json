@@ -14,10 +14,13 @@
     "noEmit": true,
     "baseUrl": "./src",
     "paths": {
-      "@alias/*": ["alias/*"],
+      "@pages/*": ["pages/*"],
+      "@layouts/*": ["layouts/*"],
+      "@components/*": ["components/*"],
       "@store/*": ["store/*"],
-       "@store": ["store/index.ts"], 
-       "@config/*": ["config/*"] 
+      "@store": ["store/index.ts"],
+      "@config/*": ["config/*"],
+      "@redux/*": ["redux/*"]
     }
   },
   "include": ["src"]

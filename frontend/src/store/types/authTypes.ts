@@ -4,22 +4,27 @@ export interface AuthState {
 }
 
 // Action Types
+export const AUTH_LOAD_SUCCESS = "AUTH_LOAD_SUCCESS" as const;
+export const AUTH_LOAD_FAILURE = "AUTH_LOAD_FAILURE" as const;
+export const AUTH_LOGIN_SUCCESS = "AUTH_LOGIN_SUCCESS" as const;
+export const AUTH_LOGOUT_SUCCESS = "AUTH_LOGOUT_SUCCESS" as const;
+
 export interface AuthLoadSuccessAction {
-	type: "AUTH_LOAD_SUCCESS";
-	payload: any;
+        type: typeof AUTH_LOAD_SUCCESS;
+        payload: unknown;
 }
 
 export interface AuthLoadFailureAction {
-	type: "AUTH_LOAD_FAILURE";
+        type: typeof AUTH_LOAD_FAILURE;
 }
 
 export interface AuthLoginSuccessAction {
-	type: "AUTH_LOGIN_SUCCESS";
-	payload: any;
+        type: typeof AUTH_LOGIN_SUCCESS;
+        payload: unknown;
 }
 
 export interface AuthLogoutSuccessAction {
-	type: "AUTH_LOGOUT_SUCCESS";
+        type: typeof AUTH_LOGOUT_SUCCESS;
 }
 
 export type AuthAction = AuthLoadSuccessAction | AuthLoadFailureAction | AuthLoginSuccessAction | AuthLogoutSuccessAction;
